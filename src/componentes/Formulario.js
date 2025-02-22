@@ -10,8 +10,13 @@ export const Formulario = (props) => {
     formularioAbierto,
     setJugador,
   } = props;
-  const { setDato, datosFormulario, validarFecha, controlFormulario } =
-    useFormulario(jugador);
+  const {
+    setDato,
+    datosFormulario,
+    validarFecha,
+    controlFormulario,
+    inputFocus,
+  } = useFormulario(jugador);
 
   const anyadirModificarJugador = () => {
     if (datosFormulario.id === 0) {
@@ -41,6 +46,7 @@ export const Formulario = (props) => {
         <Form.Label>Nombre:</Form.Label>
         <Form.Control
           type="text"
+          ref={inputFocus}
           value={datosFormulario.nombre}
           onChange={setDato}
         />

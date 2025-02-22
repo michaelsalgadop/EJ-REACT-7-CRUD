@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DateTime } from "luxon";
 export const useFormulario = (datosElementosFormulario) => {
   const [datosFormulario, setDatosFormulario] = useState(
     datosElementosFormulario
   );
+  const inputFocus = useRef(null);
   const setDato = (e) => {
     const elemento = e.target;
     setDatosFormulario({
@@ -27,10 +28,12 @@ export const useFormulario = (datosElementosFormulario) => {
     );
   };
   const controlFormulario = comprobarCamposFormulario();
+  useEffect(() => inputFocus.current.focus(), []);
   return {
     setDato,
     datosFormulario,
     validarFecha,
     controlFormulario,
+    inputFocus
   };
 };
